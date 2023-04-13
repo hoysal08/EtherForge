@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ChakraProvider,
   Box,
@@ -17,20 +17,38 @@ import {
   VStack,
   Flex,
   Spacer,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import {CopyIcon} from '@chakra-ui/icons'
-import {validateMnemonic,generateMnemonic,mnemonicToSeed} from "bip39"
-
+import {CopyIcon, DownloadIcon, RepeatIcon} from '@chakra-ui/icons'
+import {ethers} from "ethers"
+import {saveAs } from "file-saver"
 //generate new mnemonic,private key and eth addr
 
 function NewAccount() {
 
-    const [mnemonic,setmnemonic]=useState("indoor dish desk flag debris potato excuse depart ticket judge file exit")
+    const [mnemonic,setmnemonic]=useState("")
     const [pvtkey,setpvtkey]=useState("")
     const [address,setaddress]=useState("")
+     
+    function gennewaccount() {
+        const wallet = ethers.Wallet.createRandom()
+        setaddress(wallet.address)
+        setpvtkey(wallet.signingKey.privateKey)
+        setmnemonic(wallet.mnemonic.phrase)
+    }
 
- 
+    function ExportFile(){
+        let Tobewritten="Mnemonic : "+mnemonic+"\n"+"Private key : "+pvtkey+"\n"+"Address : "+address
+
+        let blob=new Blob([Tobewritten],{type:"text/plain;charset=utf-8"});
+        saveAs(blob,"PrivatKey.txt")
+    }
+    
+    useEffect(()=>{
+       gennewaccount();
+    },[]);
+
     return (
 
     <ChakraProvider theme={theme}>
@@ -52,7 +70,7 @@ function NewAccount() {
              <Flex >
                 <Text>{mnemonic}</Text>
                 <Spacer/>
-                <CopyIcon px="4" pb="3" boxSize="14"/>
+                <CopyIcon onClick={() =>  navigator.clipboard.writeText(mnemonic)} px="4" pb="3" boxSize="14"/>
             </Flex>
             </Box>
             <Box>               
@@ -60,7 +78,7 @@ function NewAccount() {
              <Flex >
                 <Text>{pvtkey}</Text>
                 <Spacer/>
-                <CopyIcon px="4" pb="3" boxSize="14"/>
+                <CopyIcon onClick={() =>  navigator.clipboard.writeText(pvtkey)} px="4" pb="3" boxSize="14"/>
             </Flex>
             </Box>
             <Box>               
@@ -68,12 +86,22 @@ function NewAccount() {
              <Flex >
                 <Text>{address}</Text>
                 <Spacer/>
-                <CopyIcon px="4" pb="3" justifySelf="flex-end" alignItems="flex-end" boxSize="14"/>
+                <CopyIcon onClick={() =>  navigator.clipboard.writeText(address)} px="4" pb="3"  boxSize="14"/>
             </Flex>
             </Box>
         </Stack>
     </CardBody>
     </Card>
+    <Flex >
+        <ButtonGroup size="lg" gap="10" variant="outline" colorScheme="black" pt={10}>
+            <Button onClick={()=>ExportFile()} rightIcon={<DownloadIcon/>} >
+                 Download
+            </Button>
+            <Button rightIcon={<RepeatIcon/>} onClick={()=>gennewaccount()}>
+                Generate new
+            </Button>
+        </ButtonGroup>
+    </Flex>
      </VStack>
         </Grid>      
       </Box>
