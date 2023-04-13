@@ -4,38 +4,34 @@ import {
   Box,
   Text,
   Link,
-  VStack,
+  HStack,
   Code,
   Grid,
   theme,
+  Card,
+  CardHeader,
+  Heading,
+  CardBody,
+  Stack,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import Home from './pages/Home';
+import NewAccount from './pages/NewAccount';
+import NewAccountWithmnemonic from './pages/NewAccountWithmnemonic';
+import NewAddress from './pages/NewAddress';
 
 function App() {
+
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<Home/>}/>
+      <Route exact path="/newaccount" element={<NewAccount/>}/>
+      <Route exact path="/newaccountwmnemonic" element={<NewAccountWithmnemonic/>}/>
+      <Route exact path="/newAddress" element={<NewAddress/>}/>
+    </Routes>
+    </BrowserRouter>
   );
 }
 
