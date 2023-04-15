@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/hoysal08/static/js/main.cc6ac840.js",
-    "static/js/787.e9f62c69.chunk.js": "/hoysal08/static/js/787.e9f62c69.chunk.js",
-    "index.html": "/hoysal08/index.html",
-    "main.cc6ac840.js.map": "/hoysal08/static/js/main.cc6ac840.js.map",
-    "787.e9f62c69.chunk.js.map": "/hoysal08/static/js/787.e9f62c69.chunk.js.map"
+    "main.js": "/EtherForge/static/js/main.f60157e3.js",
+    "static/js/787.e9f62c69.chunk.js": "/EtherForge/static/js/787.e9f62c69.chunk.js",
+    "index.html": "/EtherForge/index.html",
+    "main.f60157e3.js.map": "/EtherForge/static/js/main.f60157e3.js.map",
+    "787.e9f62c69.chunk.js.map": "/EtherForge/static/js/787.e9f62c69.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.cc6ac840.js"
+    "static/js/main.f60157e3.js"
   ]
 }
