@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 
 function Home() {
   
@@ -29,7 +30,8 @@ function Home() {
     'linear(to-b, orange.100, purple.300)',
   ]} >
         <Grid minH="100vh" p={3} >
-          <ColorModeSwitcher justifySelf="flex-end" />
+        <Header/>
+          {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
           <HStack spacing={20} justify="center" mb={200} direction="row">
             <Card variant = "elevated"   maxW="sm"  size="md"  boxShadow="dark-lg" onClick={()=>{navigate("/newaccount")}}>
               <CardHeader>

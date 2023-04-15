@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import {CopyIcon, DownloadIcon, RepeatIcon} from '@chakra-ui/icons'
-import {ethers} from "ethers"
+import { ethers } from 'ethers';
 import {saveAs } from "file-saver"
 //generate new mnemonic,private key and eth addr
 
@@ -31,10 +31,12 @@ function NewAccount() {
     const [pvtkey,setpvtkey]=useState("")
     const [address,setaddress]=useState("")
      
-    function gennewaccount() {
-        const wallet = ethers.Wallet.createRandom()
+    async function gennewaccount() {
+
+        const wallet =  ethers.Wallet.createRandom()
+        console.log(wallet)
         setaddress(wallet.address)
-        setpvtkey(wallet.signingKey.privateKey)
+        setpvtkey(wallet.privateKey)
         setmnemonic(wallet.mnemonic.phrase)
     }
 
