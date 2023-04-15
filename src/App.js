@@ -24,7 +24,7 @@ import NewAddress from './pages/NewAddress';
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/newaccount" element={<NewAccount/>}/>
