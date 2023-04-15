@@ -1,17 +1,16 @@
 import React from 'react'
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import { Box, Grid ,Image, Stack} from '@chakra-ui/react';
+import { Box, Grid ,Image, Flex} from '@chakra-ui/react';
 import logo from "../logo.png"
 function Header() {
   return (
-    <Grid>
-        <Stack direction="row" justifyContent="space-between">
-        <Box p="0" size="xs">
-        <Image p="5" size="sm" width="8%" src={logo}/>
+    <Grid height={90}  >
+        <Flex justifyContent="space-between">
+        <Box p="0" size="sm" >
+        <Image mx="5" my="2" boxSize="80px" src={logo}/>
         </Box>
        <ColorModeSwitcher justifySelf="flex-end" />
-        </Stack>
-        
+        </Flex>
     </Grid>
   )
 }

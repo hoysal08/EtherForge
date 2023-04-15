@@ -84,7 +84,7 @@ function NewAccountWithmnemonic() {
   },[accountnumber,mnemonic,inccorectmnemonic])
   
   function ExportFile() {
-    let Tobewritten = 'Private key : ' + pvtkey + '\n' + 'Address : ' + address;
+    let Tobewritten="Mnemonic : "+mnemonic+"\n"+ "Account number : "+accountnumber+"\n"+"Private key : "+pvtkey+"\n"+"Address : "+address
 
     let blob = new Blob([Tobewritten], { type: 'text/plain;charset=utf-8' });
     saveAs(blob, 'PrivatKey.txt');

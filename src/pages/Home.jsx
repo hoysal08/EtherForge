@@ -17,6 +17,7 @@ import {
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Tailer from '../components/Tailer';
 
 function Home() {
   
@@ -29,10 +30,10 @@ function Home() {
     'linear(to-t, blue.200, teal.500)',
     'linear(to-b, orange.100, purple.300)',
   ]} >
-        <Grid minH="100vh" p={3} >
-        <Header/>
+        <Grid minH="100vh"   >
+        <Header py="0" my="0"/>
           {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
-          <HStack spacing={20} justify="center" mb={200} direction="row">
+          <HStack spacing={20} justify="center" pb={200}  direction="row">
             <Card variant = "elevated"   maxW="sm"  size="md"  boxShadow="dark-lg" onClick={()=>{navigate("/newaccount")}}>
               <CardHeader>
                 <Heading size="md">Generate new account</Heading>
@@ -93,6 +94,7 @@ function Home() {
               </CardBody>
             </Card>
           </HStack>
+       <Tailer/>
         </Grid>
       </Box>
     </ChakraProvider>
