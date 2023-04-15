@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/EtherForge/static/js/main.f60157e3.js",
-    "static/js/787.e9f62c69.chunk.js": "/EtherForge/static/js/787.e9f62c69.chunk.js",
-    "index.html": "/EtherForge/index.html",
-    "main.f60157e3.js.map": "/EtherForge/static/js/main.f60157e3.js.map",
-    "787.e9f62c69.chunk.js.map": "/EtherForge/static/js/787.e9f62c69.chunk.js.map"
+    "main.js": "/static/js/main.5b0a9208.js",
+    "static/js/787.e9f62c69.chunk.js": "/static/js/787.e9f62c69.chunk.js",
+    "index.html": "/index.html",
+    "main.5b0a9208.js.map": "/static/js/main.5b0a9208.js.map",
+    "787.e9f62c69.chunk.js.map": "/static/js/787.e9f62c69.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.f60157e3.js"
+    "static/js/main.5b0a9208.js"
   ]
 }
