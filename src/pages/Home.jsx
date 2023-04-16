@@ -37,7 +37,7 @@ function Home() {
     'linear(to-t, blue.200, teal.500)',
     'linear(to-b, orange.100, purple.300)',
   ]} >
-        <Grid minH={["95vh","95vh"]}  minW="95vw" >
+        <Grid minH={["95vh","90vh"]}  minW="95vw" >
         <Header py="0" my="0"/>
           {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
           <Flex pt={["10",0]} justify="center" px={[0,20]} align="center" pb={[null,200]}  direction={["column","row"]} >

@@ -24,14 +24,14 @@ import { HashRouter } from 'react-router-dom';
 function App() {
 
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/newaccount" element={<NewAccount/>}/>
       <Route exact path="/newaccountwmnemonic" element={<NewAccountWithmnemonic/>}/>
       <Route exact path="/newAddress" element={<NewAddress/>}/>
     </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
