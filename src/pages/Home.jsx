@@ -13,6 +13,8 @@ import {
   Heading,
   CardBody,
   Stack,
+  Flex,
+  Spacer,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +25,11 @@ function Home() {
   
   const navigate=useNavigate();
 
+  const breakpoints = {
+    sm: '30em', // 480px
+    xl: '80em', // 1280px
+  }
+
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl" bgGradient={[
@@ -30,11 +37,11 @@ function Home() {
     'linear(to-t, blue.200, teal.500)',
     'linear(to-b, orange.100, purple.300)',
   ]} >
-        <Grid minH="100vh"   >
+        <Grid minH={["95vh","95vh"]}  minW="95vw" >
         <Header py="0" my="0"/>
           {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
-          <HStack spacing={20} justify="center" pb={200}  direction="row">
-            <Card variant = "elevated"   maxW="sm"  size="md"  boxShadow="dark-lg" onClick={()=>{navigate("/newaccount")}}>
+          <Flex pt={["10",0]} justify="center" px={[0,20]} align="center" pb={[null,200]}  direction={["column","row"]} >
+            <Card variant = "elevated"   maxW="sm"  size="md" _hover={{cursor:"pointer"}}  boxShadow="dark-lg" onClick={()=>{navigate("/newaccount")}}>
               <CardHeader>
                 <Heading size="md">Generate new account</Heading>
               </CardHeader>
@@ -52,8 +59,9 @@ function Home() {
                 </Stack>
               </CardBody>
             </Card>
-
-            <Card maxW="sm" size="md"  variant="elevated" boxShadow="dark-lg" onClick={()=>{navigate("/newAddress")}}>
+            <Spacer/>
+            
+            <Card maxW="sm" size="md" _hover={{cursor:"pointer"}}  variant="elevated" boxShadow="dark-lg" onClick={()=>{navigate("/newAddress")}}>
               <CardHeader>
                 <Heading size="md">
                   Generate address for existing private key
@@ -73,8 +81,9 @@ function Home() {
                 </Stack>
               </CardBody>
             </Card>
+            <Spacer/>
 
-            <Card maxW="sm" size="md"  variant="elevated" boxShadow="dark-lg" onClick={()=>{navigate("/newaccountwmnemonic")}}>
+            <Card maxW="sm" size="md" _hover={{cursor:"pointer"}} variant="elevated" boxShadow="dark-lg" onClick={()=>{navigate("/newaccountwmnemonic")}}>
               <CardHeader>
                 <Heading size="md">
                   Generate new account with existing mnemonic
@@ -93,9 +102,10 @@ function Home() {
                 </Stack>
               </CardBody>
             </Card>
-          </HStack>
-       <Tailer/>
+            <Spacer/>
+          </Flex>
         </Grid>
+        <Tailer/>
       </Box>
     </ChakraProvider>
   );

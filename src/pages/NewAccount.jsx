@@ -23,6 +23,7 @@ import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import {CopyIcon, DownloadIcon, RepeatIcon} from '@chakra-ui/icons'
 import { ethers } from 'ethers';
 import {saveAs } from "file-saver"
+import { useToast } from '@chakra-ui/react'
 //generate new mnemonic,private key and eth addr
 
 function NewAccount() {
@@ -51,6 +52,12 @@ function NewAccount() {
        gennewaccount();
     },[]);
 
+    const breakpoints = {
+        sm: '30em', // 480px
+        xl: '80em', // 1280px
+      }
+      
+      const toast = useToast()
     return (
 
     <ChakraProvider theme={theme}>
@@ -59,43 +66,45 @@ function NewAccount() {
     'linear(to-t, blue.200, teal.500)',
     'linear(to-b, orange.100, purple.300)',
   ]}>
-     <Grid minH="100vh" p={3} >
+     <Grid minH="100vh" w="100vw" p={3} >
      <ColorModeSwitcher justifySelf="flex-end"/>
-     <VStack minH="70vh" minW="70vw" >
-     <Card variant = "elevated"  size="lg"  boxShadow="md">
+     <VStack  >
+        {/* //minH="70vh" minW="70vw" */}
+     <Card p={[7,0]} borderRadius="5" variant = "elevated"  size={[null,"lg"]} boxShadow="md" >
      <CardHeader>
             <Heading size="md">New account details</Heading>
     </CardHeader>
     <CardBody>
-        <Stack spacing="2">
-            <Box>                <Heading size="xs" textTransform="uppercase" pt="5">mnemonic :</Heading>
+        <Stack spacing="2" >
+            <Box w={[80,"50vw"]}>     
+            <Heading size="xs" textTransform="uppercase" pt="5">mnemonic :</Heading>
              <Flex >
-                <Text>{mnemonic}</Text>
+                <Text noOfLines={[2,null]} >{mnemonic}</Text>
                 <Spacer/>
-                <CopyIcon onClick={() =>  navigator.clipboard.writeText(mnemonic)} px="4" pb="3" boxSize="14"/>
+                <CopyIcon _hover={{cursor:"pointer"}} onClick={() => {navigator.clipboard.writeText(mnemonic); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}} px="4" pb="3" boxSize="14" />
             </Flex>
             </Box>
-            <Box>               
+            <Box w={[80,"50vw"]}>               
                  <Heading size="xs" textTransform="uppercase" pt="5">Private Key :</Heading>
              <Flex >
-                <Text>{pvtkey}</Text>
+                <Text noOfLines={[2,null]}>{pvtkey}</Text>
                 <Spacer/>
-                <CopyIcon onClick={() =>  navigator.clipboard.writeText(pvtkey)} px="4" pb="3" boxSize="14"/>
+                <CopyIcon _hover={{cursor:"pointer"}} onClick={() =>  {navigator.clipboard.writeText(pvtkey); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}} px="4" pb="3" boxSize="14"/>
             </Flex>
             </Box>
-            <Box>               
+            <Box w={[80,"50vw"]}>               
                  <Heading size="xs" textTransform="uppercase" pt="5">ETH address :</Heading>
              <Flex >
-                <Text>{address}</Text>
+                <Text noOfLines={[2,null]}>{address}</Text>
                 <Spacer/>
-                <CopyIcon onClick={() =>  navigator.clipboard.writeText(address)} px="4" pb="3"  boxSize="14"/>
+                <CopyIcon _hover={{cursor:"pointer"}} onClick={() => { navigator.clipboard.writeText(address); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}} px="4" pb="3"  boxSize="14"/>
             </Flex>
             </Box>
         </Stack>
     </CardBody>
     </Card>
     <Flex >
-        <ButtonGroup size="lg" gap="10" variant="outline" colorScheme="black" pt={10}>
+        <ButtonGroup size={["md","lg"]} gap={["5","10"]} variant="outline" colorScheme="black" pt={10}>
             <Button onClick={()=>ExportFile()} rightIcon={<DownloadIcon/>} >
                  Download
             </Button>

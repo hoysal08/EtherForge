@@ -22,6 +22,7 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormControl,
+  useToast
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { CopyIcon, DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
@@ -34,7 +35,7 @@ function NewAddress() {
   const [address, setaddress] = useState('');
   const [incorrectpvtkey,setincorrectpvtkey] = useState(false);
 
-  
+  const toast=useToast()
   function checkforvalidpvtkey(){ 
      try{
      let w= new ethers.Wallet(pvtkey)
@@ -94,40 +95,43 @@ function NewAddress() {
       >
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack minH="70vh" minW="70vw">
+          <VStack >
+            {/* //minH="70vh" minW="70vw" */}
             <Card variant="elevated" size="lg" boxShadow="md">
               <CardHeader>
                 <Heading size="md">New account details</Heading>
               </CardHeader>
               <CardBody pt={0}>
                 <Stack spacing="0">
-                  <Box>
+                  <Box  w={[80,"50vw"]}>
                     <Heading size="xs" textTransform="uppercase" py="5">
                       Private key{' '}
                     </Heading>
                     <Flex>
                       <FormControl isInvalid={incorrectpvtkey}>
-                      <Input variant="filled" placeholder="" w="xl" onChange={(e)=>{handlepvtkeychange(e.target.value)}} value={pvtkey} />{' '}
+                      <Input variant="filled" placeholder="" w={["2xs","2xl"]} onChange={(e)=>{handlepvtkeychange(e.target.value)}} value={pvtkey} />{' '}
                       {(!incorrectpvtkey)?( (pvtkey.length!=0) && <FormHelperText pl="2">Your Private key is secure, and has not left your browser</FormHelperText>):( (pvtkey.length!=0) && <FormErrorMessage>Incorrect Private Key!</FormErrorMessage> )}
                       </FormControl>
                       <Spacer />
                       <CopyIcon
-                        onClick={() => navigator.clipboard.writeText(pvtkey)}
+                      _hover={{cursor:"pointer"}}
+                        onClick={() => {navigator.clipboard.writeText(pvtkey); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}}
                         px="4"
                         pb="3"
                         boxSize="14"
                       />
                     </Flex>
                   </Box>
-                  <Box>
+                  <Box  w={[80,"50vw"]}>
                     <Heading size="xs" textTransform="uppercase" py="5">
                       {' '}
                       Address
                     </Heading>
                     <Flex>
-                      <Input variant="filled" placeholder="0x" value={address} readOnly={true}/> <Spacer />
+                      <Input w={["2xs","2xl"]} variant="filled" placeholder="0x" value={address} readOnly={true}/> <Spacer />
                       <CopyIcon
-                        onClick={() => navigator.clipboard.writeText(address)}
+                      _hover={{cursor:"pointer"}}
+                        onClick={() => {navigator.clipboard.writeText(address); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}}
                         px="4"
                         pb="3"
                         boxSize="14"

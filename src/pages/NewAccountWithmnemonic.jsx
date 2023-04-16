@@ -28,6 +28,7 @@ import {
   NumberDecrementStepper,
   NumberIncrementStepper,
   Select,
+  useToast
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { CopyIcon, DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
@@ -50,6 +51,7 @@ function NewAccountWithmnemonic() {
     setpvtkey('')
       setmnenoic(newmnemonic) 
   }
+  const toast=useToast()
 
   function genaddress(){
 
@@ -103,14 +105,15 @@ function NewAccountWithmnemonic() {
       >
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack minH="70vh" minW="70vw">
+          <VStack >
+            //minH="70vh" minW="70vw"
             <Card variant="elevated" size="lg" boxShadow="md">
               <CardHeader>
                 <Heading size="md">New account details</Heading>
               </CardHeader>
               <CardBody pt={0}>
                 <Stack spacing="0">
-                  <Box>
+                  <Box w={[80,"60vw"]}>
                     <Heading size="xs" textTransform="uppercase" py="5">
                       Mnemonic{' '}
                     </Heading>
@@ -119,7 +122,7 @@ function NewAccountWithmnemonic() {
                         <Input
                           variant="filled"
                           placeholder=""
-                          w="xl"
+                          w={["2xs","2xl"]}
                           onChange={(e)=>handlemnenoicchange(e.target.value)}
                           value={mnemonic}
                         />
@@ -138,7 +141,8 @@ function NewAccountWithmnemonic() {
                       </FormControl>
       
                       <CopyIcon
-                        onClick={() => navigator.clipboard.writeText(pvtkey)}
+                      _hover={{cursor:"pointer"}}
+                        onClick={() => {navigator.clipboard.writeText(pvtkey); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}}
                         px="4"
                         pb="3"
                         boxSize="14"
@@ -155,7 +159,7 @@ function NewAccountWithmnemonic() {
                         </NumberInputStepper>
                       </NumberInput>
                   </Box>
-                  <Box>
+                  <Box w={[80,"60vw"]}>
                     <Heading size="xs" textTransform="uppercase" py="5">
                    
                       Private Key
@@ -169,14 +173,15 @@ function NewAccountWithmnemonic() {
                       />{' '}
                       <Spacer />
                       <CopyIcon
-                        onClick={() => navigator.clipboard.writeText(address)}
+                      _hover={{cursor:"pointer"}}
+                        onClick={() => {navigator.clipboard.writeText(address); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}}
                         px="4"
                         pb="3"
                         boxSize="14"
                       />
                     </Flex>
                   </Box>
-                  <Box>
+                  <Box w={[80,"60vw"]}>
                     <Heading size="xs" textTransform="uppercase" py="5">
                       Address
                     </Heading>
@@ -189,7 +194,8 @@ function NewAccountWithmnemonic() {
                       />{' '}
                       <Spacer />
                       <CopyIcon
-                        onClick={() => navigator.clipboard.writeText(address)}
+                      _hover={{cursor:"pointer"}}
+                        onClick={() => {navigator.clipboard.writeText(address); toast({title:"Copied",status:"success",duration:2000,isClosable:true})}}
                         px="4"
                         pb="3"
                         boxSize="14"
