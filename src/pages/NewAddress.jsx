@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  HStack,
-  Code,
   Grid,
   theme,
   Card,
@@ -25,7 +21,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import { CopyIcon, DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
+import { CopyIcon, DownloadIcon } from '@chakra-ui/icons';
 import { ethers } from 'ethers';
 import { saveAs } from 'file-saver';
 //generate new mnemonic,private key and eth addr
@@ -110,7 +106,7 @@ function NewAddress() {
                     <Flex>
                       <FormControl isInvalid={incorrectpvtkey}>
                       <Input variant="filled" placeholder="" w={["2xs","2xl"]} onChange={(e)=>{handlepvtkeychange(e.target.value)}} value={pvtkey} />{' '}
-                      {(!incorrectpvtkey)?( (pvtkey.length!=0) && <FormHelperText pl="2">Your Private key is secure, and has not left your browser</FormHelperText>):( (pvtkey.length!=0) && <FormErrorMessage>Incorrect Private Key!</FormErrorMessage> )}
+                      {(!incorrectpvtkey)?( (pvtkey.length!==0) && <FormHelperText pl="2">Your Private key is secure, and has not left your browser</FormHelperText>):( (pvtkey.length!==0) && <FormErrorMessage>Incorrect Private Key!</FormErrorMessage> )}
                       </FormControl>
                       <Spacer />
                       <CopyIcon

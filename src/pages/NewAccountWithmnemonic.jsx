@@ -55,9 +55,6 @@ function NewAccountWithmnemonic() {
 
   function genaddress(){
 
-    console.log(inccorectmnemonic)
-    console.log(accountnumber)
-    console.log(mnemonic.length)
     try{
       if(!inccorectmnemonic && accountnumber>=0 && mnemonic.length>0){
    let path=`m/44'/60'/${accountnumber}'/0/0`

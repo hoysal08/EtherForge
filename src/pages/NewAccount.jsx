@@ -35,7 +35,6 @@ function NewAccount() {
     async function gennewaccount() {
 
         const wallet =  ethers.Wallet.createRandom()
-        console.log(wallet)
         setaddress(wallet.address)
         setpvtkey(wallet.privateKey)
         setmnemonic(wallet.mnemonic.phrase)
